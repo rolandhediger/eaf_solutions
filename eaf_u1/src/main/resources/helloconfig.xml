@@ -5,15 +5,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-<bean id="standard_out_renderer" class="edu.hediger.roland.implementation.StandardOutRenderer">
-  <property name="messageProvider" ref="extern_const_provider"/>
-</bean>
 <context:property-placeholder location="classpath:app.properties"/>
+
+<context:annotation-config/>
+<context:component-scan base-package="edu.hediger.roland"/>
+
 <bean id="standard_err_xml_renderer" class="edu.hediger.roland.implementation.StandardErrorXMLRenderer">
 <property name="messageProvider" ref="wk_provider"/>
 </bean>
 
-<bean id="hw_provider" class="edu.hediger.roland.implementation.HelloWorldProvider"/>
+<!--<bean id="hw_provider" class="edu.hediger.roland.implementation.HelloWorldProvider"/>-->
 <bean id="wk_provider" class="edu.hediger.roland.implementation.WillkommenProvider"/>
 <bean id= "extern_const_provider" class="edu.hediger.roland.implementation.ExternalizedContructorHelloWorldMessageProvider">
 	<constructor-arg name="message" value="${helloworld.message}"/>

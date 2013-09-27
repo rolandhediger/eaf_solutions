@@ -9,7 +9,7 @@ public class DecoupledHelloWorldWithSpring {
 
 	public static void main(String[] args) {
 		ApplicationContext context = getAppContext();
-		StandardOutRenderer renderer = (StandardOutRenderer) context.getBean("standard_out_renderer");
+		StandardOutRenderer renderer = (StandardOutRenderer) context.getBean("standardOutRenderer");
 		renderer.render();
 
 	}
