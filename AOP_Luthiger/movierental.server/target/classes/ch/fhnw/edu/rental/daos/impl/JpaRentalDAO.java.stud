@@ -1,0 +1,44 @@
+package ch.fhnw.edu.rental.daos.impl;
+
+import java.util.List;
+
+import ch.fhnw.edu.rental.daos.RentalDAO;
+import ch.fhnw.edu.rental.model.Rental;
+import ch.fhnw.edu.rental.model.User;
+
+public class JpaRentalDAO implements RentalDAO, ManagedDAO<Rental> {
+
+	@Override
+	public Rental getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Rental> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Rental> getRentalsByUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveOrUpdate(Rental rental) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void delete(Rental rental) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Rental manage(Rental instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

@@ -1,0 +1,43 @@
+package ch.fhnw.edu.rental.daos.impl;
+
+import java.util.List;
+
+import ch.fhnw.edu.rental.daos.MovieDAO;
+import ch.fhnw.edu.rental.model.Movie;
+
+public class JpaMovieDAO implements MovieDAO, ManagedDAO<Movie> {
+
+	@Override
+	public Movie getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Movie> getByTitle(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Movie> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Movie movie) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void saveOrUpdate(Movie movie) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Movie manage(Movie instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

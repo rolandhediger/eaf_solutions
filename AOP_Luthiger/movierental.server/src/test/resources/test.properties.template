@@ -1,0 +1,5 @@
+# MailHost settings
+mail.host = 
+mail.host.port = 
+mail.user = 
+mail.password = 

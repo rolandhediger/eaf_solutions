@@ -1,0 +1,38 @@
+package ch.fhnw.edu.rental.daos.impl;
+
+import java.util.List;
+
+import ch.fhnw.edu.rental.daos.PriceCategoryDAO;
+import ch.fhnw.edu.rental.model.PriceCategory;
+
+
+public class JpaPriceCategoryDAO implements PriceCategoryDAO, ManagedDAO<PriceCategory> {
+
+	@Override
+	public PriceCategory getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PriceCategory> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveOrUpdate(PriceCategory priceCategory) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void delete(PriceCategory priceCategory) {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public PriceCategory manage(PriceCategory instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

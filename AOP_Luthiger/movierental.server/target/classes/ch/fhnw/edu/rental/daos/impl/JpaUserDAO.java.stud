@@ -1,0 +1,44 @@
+package ch.fhnw.edu.rental.daos.impl;
+
+import java.util.List;
+
+import ch.fhnw.edu.rental.daos.UserDAO;
+import ch.fhnw.edu.rental.model.User;
+
+
+public class JpaUserDAO implements UserDAO, ManagedDAO<User> {
+
+	@Override
+	public User getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveOrUpdate(User user) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void delete(User user) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public User manage(User instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

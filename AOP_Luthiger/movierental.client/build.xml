@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+<project name="Software Construction Lab" default="compile" basedir="."
+    xmlns:ivy="antlib:org.apache.ivy.ant">
+    
+    <property file="build.properties" />
+
+    <!-- The build properties -->
+    <property name="test.dir" value="${basedir}/tests" />
+    <property name="build.dir" value="${basedir}/build" />
+    <property name="build.lib.dir" value="${build.dir}/lib" />
+    <property name="build.classes.dir" value="${build.dir}/classes" />
+    <property name="build.reports.dir" value="${build.dir}/reports" />
+    <property name="reports.dir.tests" value="${build.dir}/reports/tests" />
+    <property name="reports.dir.checkstyle" value="${build.dir}/reports/analysis" />
+    <property name="main.class" value="ch.fhnw.edu.rental.gui.MovieRentalApplication"/>
+    <property name="docs.dir" value="${basedir}/doc" />
+
+    <!-- The build classpath -->
+    <path id="build.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- The project classpath -->
+    <path id="project.classpath">
+        <path refid="build.classpath" />
+    </path>
+
+    <!-- The test classpath -->
+    <path id="test.classpath">
+        <path refid="project.classpath" />
+    </path>
+ 
+    <target name="prepare">
+        <mkdir dir="${build.classes.dir}" />
+        <mkdir dir="${build.lib.dir}" />
+        <mkdir dir="${build.reports.dir}"/>
+        <mkdir dir="${reports.dir.tests}"/>
+        <mkdir dir="${reports.dir.checkstyle}"/>
+    </target>
+
+
+    <target name="compile" depends="prepare" description="Compile the sources">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="build.classpath" deprecation="off" optimize="on"/>
+        <javac srcdir="${test.dir}" destdir="${build.classes.dir}" classpathref="build.classpath" deprecation="off" optimize="on"/>
+        <copy todir="${build.classes.dir}/META-INF">
+            <fileset dir="${src.dir}/META-INF">
+                <include name="**/*.xml" />
+            </fileset>
+        </copy>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}">
+                <include name="**/*.xml" />
+                <include name="**/*.properties" />
+                <include name="**/*.png" />
+            </fileset>
+            <fileset dir="${test.dir}">
+                <include name="**/*.xml" />
+                <include name="**/*.properties" />
+            </fileset>
+        </copy>
+    </target>
+    
+
+    <target name="run" depends="jar" description="Run distributed application from jar file">
+        <java jar="${build.lib.dir}/${name}-${version}.jar" fork="true" />
+    </target>
+
+    <target name="jar" depends="compile" description="Create jar distribution">
+        <jar jarfile="${build.lib.dir}/${name}-${version}.jar" basedir="${build.classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}" />
+                <attribute name="Class-Path" value=". ../../lib/AbsoluteLayout.jar 
+                    ../../lib/antlr-2.7.6.jar ../../lib/asm.jar ../../lib/beansbinding-1.2.1.jar 
+                    ../../lib/cglib-2.1.3.jar ../../lib/commons-collections-2.1.1.jar 
+                    ../../lib/commons-logging-1.0.4.jar ../../lib/dbunit-2.2.jar ../../lib/dom4j-1.6.1.jar 
+                    ../../lib/easymock.jar ../../lib/ejb3-persistence.jar 
+                    ../../lib/hibernate-annotations.jar ../../lib/hibernate-commons-annotations.jar 
+                    ../../lib/hibernate-entitymanager.jar ../../lib/hibernate3.jar ../../lib/hsqldb.jar 
+                    ../../lib/javassist.jar ../../lib/jboss-archive-browsing.jar ../../lib/jta.jar 
+                    ../../lib/junit-4.1.jar ../../lib/log4j-1.2.14.jar ../../lib/swing-layout-1.0.3.jar"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="zip" depends="prepare" description="Create zip file of the whole project">
+        <zip destfile="${build.lib.dir}/${name}-${version}.zip">
+            <zipfileset dir="${basedir}" prefix="swc-lab" excludes="build/**, **/*.log">
+            </zipfileset>
+        </zip>
+    </target>
+
+    <target name="junit" depends="compile" description="Run Junit tests">
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <pathelement location="${build.classes.dir}" />
+                <path refid="test.classpath" />
+            </classpath>
+
+            <formatter type="xml" />
+<!--
+            <formatter type="plain" />
+            <formatter type="xml" />
+-->
+
+            <batchtest fork="yes" todir="${reports.dir.tests}">
+                <fileset dir="${build.classes.dir}">
+                    <include name="**/*Test.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+    
+    <target name="all" depends="clean, junit, javadoc, jar, zip"/>
+    
+    <target name="clean" description="Clean generated stuff">
+        <delete dir="${build.dir}" />
+    </target>
+    
+
+
+
+  
+   <target name="javadoc">
+     <javadoc
+               destdir="${docs.dir}"
+               author="true"
+               version="true"
+               use="true"
+               windowtitle="Movie Rental API"
+               >
+
+            <classpath>
+                <path refid="test.classpath" />
+            </classpath>
+
+        <fileset dir="${src.dir}" defaultexcludes="yes">
+          <include name="**/*.java"/>
+        </fileset>
+
+      </javadoc>
+    </target>
+  
+</project>

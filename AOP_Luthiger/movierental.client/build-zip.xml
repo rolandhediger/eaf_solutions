@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="client" default="zip.student" basedir=".">
+
+	<property file="build.properties" />
+
+	<target name="zip.student" description="creates student distribution of the client project">
+		<property name="prefix" value="movierental.${name}"/>
+		<zip destfile="../student-${name}.zip">
+
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="pom.xml"/>
+
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes=".project"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes=".classpath"/>
+
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${etc.dir}/applicationLocal.xml"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${etc.dir}/dataset.xml"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${etc.dir}/log4j.properties"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${etc.dir}/ch/fhnw/edu/rental/gui/resources/*.png"/>
+
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${src.dir}/ch/fhnw/edu/rental/*.java"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${src.dir}/ch/fhnw/edu/rental/gui/*.java"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${src.dir}/ch/fhnw/edu/rental/services/BusinessLogic.java"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes="${src.dir}/ch/fhnw/edu/rental/services/BusinessLogicLocal.java"/>
+
+		</zip>
+	</target>
+
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project name="common" default="zip.student" basedir=".">
+
+	<property name="name" value="common" />
+	<property name="src.dir" value="src/main/java" />
+
+	<target name="zip.student" description="creates student distribution of gui project">
+		<property name="prefix" value="movierental.${name}"/>
+		<zip destfile="../student-${name}.zip">
+
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes=".project"/>
+			<zipfileset prefix="${prefix}"  dir="${basedir}" includes=".classpath"/>
+			
+			<zipfileset prefix="${prefix}"  dir="${basedir}"
+					 includes="${src.dir}/ch/fhnw/edu/rental/service/RentalServiceException.java"/>
+
+		</zip>
+	</target>
+	
+</project>
