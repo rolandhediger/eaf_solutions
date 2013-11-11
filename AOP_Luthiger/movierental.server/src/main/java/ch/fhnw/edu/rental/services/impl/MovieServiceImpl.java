@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import ch.fhnw.edu.rental.daos.MovieDAO;
 import ch.fhnw.edu.rental.daos.PriceCategoryDAO;
@@ -43,6 +44,7 @@ public class MovieServiceImpl implements MovieService {
 	public List<Movie> getMoviesByTitle(String title) throws RentalServiceException {
 		return movieDAO.getByTitle(title);
 	}
+
 
 	public void saveOrUpdateMovie(Movie movie) throws RentalServiceException {
 		if (movie == null) {
