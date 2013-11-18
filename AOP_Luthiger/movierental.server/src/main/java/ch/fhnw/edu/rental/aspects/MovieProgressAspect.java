@@ -19,15 +19,11 @@ public class MovieProgressAspect {
 
 	@Autowired
 	private MovieProgress movieProgress;
-	@AfterReturning(pointcut="execution( * ch.fhnw.edu.rental.services.MovieService.getAllMovies())",returning="movielist")
-	public void checkMovieList(Object movielist) {
-		if (movielist instanceof List<?>){
-			List<Movie> movies = (List<Movie>)movielist;
-			boolean isUpdated = movieProgress.checkForUpdateProgress(movies);
-			if (isUpdated){
-				LOG.debug(movieProgress.toString());
-			}
+
+	@AfterReturning(pointcut = "execution(* ch.fhnw.edu.rental.services.MovieService.getAllMovies())", returning = "movielist")
+	public void checkMovieList(List<Movie> movielist) {
+		if (movieProgress.checkForUpdateProgress(movielist)) {
+			LOG.debug(movieProgress.toString());
 		}
 	}
 }
-
